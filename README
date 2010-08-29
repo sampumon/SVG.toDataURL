@@ -2,6 +2,8 @@ The missing SVG.toDataURL library for your SVG elements.
 	
 Requires canvg for PNG exporting: http://code.google.com/p/canvg/.
 
+Compatible with ~latest versions of Firefox, Safari, Chrome, Opera and Internet Explorer 9
+
 0) install canvg:
 	<script type="text/javascript" src="rgbcolor.js"></script>
 	<script type="text/javascript" src="canvg.js"></script>
