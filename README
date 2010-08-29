@@ -1,0 +1,11 @@
+The missing SVG.toDataURL library for your SVG elements.
+	
+Requires canvg for PNG exporting: http://code.google.com/p/canvg/.
+
+0) install canvg:
+	<script type="text/javascript" src="rgbcolor.js"></script>
+	<script type="text/javascript" src="canvg.js"></script>
+1) <script type="text/javascript" src="svg_todataurl.js"></script>
+2) var pngDataURL = mySVGelement.toDataURL("image/png");
+
+^_____^
