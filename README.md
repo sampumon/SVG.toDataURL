@@ -23,19 +23,19 @@ Compatibility
 
 Test page: http://sampumon.github.io/SVG.toDataURL/butterfly_test.html
 
-Works on all modern browsers. -Most- some browsers require [canvg] for PNG exporting.
+Works on all modern browsers. ~~Most~~ some browsers require [canvg] for PNG exporting.
 
 Compatibility for May 2014. `+` yes, `-` no support. If we know which browser version added support, we have it prefixed to `+`.
 
 	Browser     E x p o r t i n g  f o r m a t
 	            svg+xml  png/canvg  png/native
 	IE           9+       9+         -
-	Chrome       +        +          ~34+ ²
+	Chrome       +        +          33+ ²
 	Safari       +        +          -
 	Firefox      +        +          11+ ¹
 	Opera        +        +          -
 
-¹ [Allow SVG-as-an-image to be drawn into a canvas without marking it as write-only](https://bugzilla.mozilla.org/show_bug.cgi?id=672013)
+¹ [Allow SVG-as-an-image to be drawn into a canvas without marking it as write-only](https://bugzilla.mozilla.org/show_bug.cgi?id=672013)  
 ² [Implement SVGImage::hasSingleSecurityOrigin()](https://bugs.webkit.org/show_bug.cgi?id=119492)
 
 Notes
