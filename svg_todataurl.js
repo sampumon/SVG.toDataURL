@@ -18,7 +18,7 @@
 		[the rest of the options only apply when type="image/png"]
 
 		renderer: "native"|"canvg"
-			PNG renderer to use. Native renderer¹ probably causes security exception.
+			PNG renderer to use. Native renderer¹ might cause a security exception.
 			Default: canvg if available, otherwise native.
 
 		keepNonSafe: true|false
@@ -113,25 +113,25 @@ SVGElement.prototype.toDataURL = function(type, options) {
 
 		// TODO: if (options.keepOutsideViewport), do some translation magic?
 
-		var img = new Image();
+		var svg_img = new Image();
 		var svg_xml = XMLSerialize(_svg);
-		img.src = base64dataURLencode(svg_xml);
+		svg_img.src = base64dataURLencode(svg_xml);
 
-		img.onload = function() {
-			debug("exported image size: " + [img.width, img.height])
-			canvas.width = img.width;
-			canvas.height = img.height;
-			ctx.drawImage(img, 0, 0);
+		svg_img.onload = function() {
+			debug("exported image size: " + [svg_img.width, svg_img.height])
+			canvas.width = svg_img.width;
+			canvas.height = svg_img.height;
+			ctx.drawImage(svg_img, 0, 0);
 
 			// SECURITY_ERR WILL HAPPEN NOW
 			var png_dataurl = canvas.toDataURL();
 			debug(type + " length: " + png_dataurl.length);
 
 			if (options.callback) options.callback( png_dataurl );
-			else debug("NOTE: no callback set, so nothing happens.");
+			else debug("WARNING: no callback set, so nothing happens.");
 		}
 		
-		img.onerror = function() {
+		svg_img.onerror = function() {
 			console.log(
 				"Can't export! Maybe your browser doesn't support " +
 				"SVG in img element or SVG input for Canvas drawImage?\n" +
@@ -201,7 +201,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 					break;
 
 				case "native":
-					debug("using native renderer for png export. THIS WILL PROBABLY FAIL.");
+					debug("using native renderer for png export. THIS MIGHT FAIL.");
 					return exportPNG();
 					break;
 
