@@ -1,34 +1,38 @@
 SVG.toDataURL()
 ===============
 
-The missing SVG.toDataURL() exporter for your SVG elements.
+The missing `SVG.toDataURL()` for your SVG elements. Supports exporting as SVG+XML and PNG.
 
 See [original paper][svgopen2010] for more information on interfacing between SVG and Canvas.
 
 Instructions
 ------------
 
-0. Include [canvg]. Not needed on Firefox 11+!
-1. `<script type="text/javascript" src="svg_todataurl.js"></script>`
-2. `var pngDataURL = mySVGelement.toDataURL("image/png")`
-3. See `butterfly_test.html` for working example.
+1. Include [canvg] if you need PNG support for unsupported browers (see compatibility below).
+2. `<script type="text/javascript" src="svg_todataurl.js"></script>`
+3. See `butterfly_test.html` for full example & compability test.
 
-API documentation
------------------
+```javascript
+mySVGelement.toDataURL("image/png", {
+    callback: function(data) {
+        myIMGelement.setAttribute("src", data)
+    }
+})
+```
 
-See `svg_todataurl.js`.
+API documentation inside [svg_todataurl.js](svg_todataurl.js).
 
 Compatibility
 -------------
 
-Test page: http://sampumon.github.io/SVG.toDataURL/butterfly_test.html
+Test your browser with our [butterfly test suite](http://sampumon.github.io/SVG.toDataURL/butterfly_test.html).
 
-Works on all modern browsers. ~~Most~~ some browsers require [canvg] for PNG exporting.
+Works in all modern browsers. Some browsers require [canvg] for PNG exporting.
 
-Compatibility for May 2014. `+` yes, `-` no support. If we know which browser version added support, we have it prefixed to `+`.
+Compatibility as of May 2014. `+` yes, `vv+` yes since version vv, `-` no support yet.
 
 	Browser     E x p o r t i n g  f o r m a t
-	            svg+xml  png/canvg  png/native
+	            SVG+XML  PNG/canvg  PNG/native
 	IE           9+       9+         -
 	Chrome       +        +          33+ ²
 	Safari       +        +          -
@@ -41,7 +45,7 @@ Compatibility for May 2014. `+` yes, `-` no support. If we know which browser ve
 Notes
 -----
 
-* Images inside SVG, ie. `<image>` elements only work if their src is a dataURL. External images, same domain or not, will not be rendered (but also won't cause a security exception).
+* SVG `<image>` elements only work if their `src` is a dataURL. External images, same domain or not, will not be rendered (but won't cause a security exception either).
 
 Final
 -----
