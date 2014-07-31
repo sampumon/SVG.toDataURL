@@ -8,7 +8,7 @@
 	type	MIME type of the exported data.
 			Default: image/svg+xml.
 			Must support: image/png.
-            Additional: image/jpeg.
+			Additional: image/jpeg.
 
 	options is a map of options: {
 		callback: function(dataURL)
@@ -143,7 +143,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 		// NOTE: will not return anything
 	}
 
-	function exportImagecanvg(type) {
+	function exportImageCanvg(type) {
 		var canvas = document.createElement("canvas");
 		var ctx = canvas.getContext('2d');
 		var svg_xml = XMLSerialize(_svg);
@@ -189,7 +189,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 			break;
 
 		case "image/png":
-        case "image/jpeg":
+		case "image/jpeg":
 
 			if (!options.renderer) {
 				if (window.canvg) options.renderer = "canvg";
@@ -199,12 +199,12 @@ SVGElement.prototype.toDataURL = function(type, options) {
 			switch (options.renderer) {
 				case "canvg":
 					debug("using canvg renderer for png export");
-					return exportImagecanvg(options.renderer);
+					return exportImageCanvg(type);
 					break;
 
 				case "native":
 					debug("using native renderer for png export. THIS MIGHT FAIL.");
-					return exportImage(options.renderer);
+					return exportImage(type);
 					break;
 
 				default:
