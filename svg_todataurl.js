@@ -8,6 +8,7 @@
 	type	MIME type of the exported data.
 			Default: image/svg+xml.
 			Must support: image/png.
+            Additional: image/jpeg.
 
 	options is a map of options: {
 		callback: function(dataURL)
@@ -15,7 +16,7 @@
 			This is only necessary when using native PNG renderer.
 			Default: undefined.
 		
-		[the rest of the options only apply when type="image/png"]
+		[the rest of the options only apply when type="image/png" or type="image/jpeg"]
 
 		renderer: "native"|"canvg"
 			PNG renderer to use. Native renderer¹ might cause a security exception.
@@ -107,7 +108,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 		return b64;
 	}
 
-	function exportPNG() {
+	function exportImage(type) {
 		var canvas = document.createElement("canvas");
 		var ctx = canvas.getContext('2d');
 
@@ -124,7 +125,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 			ctx.drawImage(svg_img, 0, 0);
 
 			// SECURITY_ERR WILL HAPPEN NOW
-			var png_dataurl = canvas.toDataURL();
+			var png_dataurl = canvas.toDataURL(type);
 			debug(type + " length: " + png_dataurl.length);
 
 			if (options.callback) options.callback( png_dataurl );
@@ -142,7 +143,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 		// NOTE: will not return anything
 	}
 
-	function exportPNGcanvg() {
+	function exportImagecanvg(type) {
 		var canvas = document.createElement("canvas");
 		var ctx = canvas.getContext('2d');
 		var svg_xml = XMLSerialize(_svg);
@@ -163,7 +164,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 			scaleHeight: keepBB ? bb.height+bb.y : undefined,
 			renderCallback: function() {
 				debug("exported image dimensions " + [canvas.width, canvas.height]);
-				var png_dataurl = canvas.toDataURL();
+				var png_dataurl = canvas.toDataURL(type);
 				debug(type + " length: " + png_dataurl.length);
 	
 				if (options.callback) options.callback( png_dataurl );
@@ -171,7 +172,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 		});
 
 		// NOTE: return in addition to callback
-		return canvas.toDataURL();
+		return canvas.toDataURL(type);
 	}
 
 	// BEGIN MAIN
@@ -188,6 +189,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 			break;
 
 		case "image/png":
+        case "image/jpeg":
 
 			if (!options.renderer) {
 				if (window.canvg) options.renderer = "canvg";
@@ -197,12 +199,12 @@ SVGElement.prototype.toDataURL = function(type, options) {
 			switch (options.renderer) {
 				case "canvg":
 					debug("using canvg renderer for png export");
-					return exportPNGcanvg();
+					return exportImagecanvg(options.renderer);
 					break;
 
 				case "native":
 					debug("using native renderer for png export. THIS MIGHT FAIL.");
-					return exportPNG();
+					return exportImage(options.renderer);
 					break;
 
 				default:
