@@ -11,6 +11,8 @@
 			Additional: image/jpeg.
 
 	options is a map of options: {
+    log: true
+
 		callback: function(dataURL)
 			Callback function which is called when the data URL is ready.
 			This is only necessary when using native PNG renderer.
@@ -41,9 +43,10 @@
 
 SVGElement.prototype.toDataURL = function(type, options) {
 	var _svg = this;
+  var log = (options.log) ? options.log : true;
 	
 	function debug(s) {
-		console.log("SVG.toDataURL:", s);
+    if (log) console.log("SVG.toDataURL:", s);
 	}
 
 	function exportSVG() {
