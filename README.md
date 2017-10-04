@@ -29,18 +29,19 @@ Test your browser with our [butterfly test suite](http://sampumon.github.io/SVG.
 
 Works in all modern browsers. Some browsers require [canvg] for PNG exporting.
 
-Compatibility as of May 2014. `+` yes, `vv+` yes since version vv, `-` no support yet.
+Compatibility as of October 2017. `+` yes, `vv+` yes since version vv, `-` no support yet.
 
 	Browser     E x p o r t i n g  f o r m a t
 	            SVG+XML  PNG/canvg  PNG/native
-	IE           9+       9+         -
+	IE           9+       9+         edge
 	Chrome       +        +          33+ ²
-	Safari       +        +          -
-	Firefox      +        +          11+ ¹
-	Opera        +        +          -
+	Safari       +        +          7.1+ ³
+	Firefox      +        +          11+ ¹
+	Opera        +        +          +
 
 ¹ [Allow SVG-as-an-image to be drawn into a canvas without marking it as write-only](https://bugzilla.mozilla.org/show_bug.cgi?id=672013)  
 ² [Implement SVGImage::hasSingleSecurityOrigin()](https://bugs.webkit.org/show_bug.cgi?id=119492)
+³ [Test Browser Support for SVG to Canvas](http://designashirt.github.io/svg-canvas-tests/)
 
 Notes
 -----
