@@ -1,0 +1,22 @@
+{
+  "name": "svgtodatauri",
+  "version": "0.0.0",
+  "description": "Gives your SVG elements the missing toDataURL function (same as Canvas has)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graingert/SVG.toDataURL.git"
+  },
+  "keywords": [
+    "svg",
+    "dataurl"
+  ],
+  "author": "Samuli Kaipiainen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graingert/SVG.toDataURL/issues"
+  },
+  "homepage": "https://github.com/graingert/SVG.toDataURL#readme"
+}

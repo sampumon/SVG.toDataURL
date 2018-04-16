@@ -39,12 +39,12 @@
 	¹ http://svgopen.org/2010/papers/62-From_SVG_to_Canvas_and_Back/#svg_to_canvas
 */
 
-SVGElement.prototype.toDataURL = function(type, options) {
-	var _svg = this;
-	
-	function debug(s) {
+module.exports = function toDataURL(_svg, type, options) {
+	function defaultDebug(s) {
 		console.log("SVG.toDataURL:", s);
 	}
+  var debug = options && options.debug ? options.debug : defaultDebug;
+  var myCanvg = options && options.canvg ? options.canvg : typeof canvg === 'function' ? canvg : window.canvg;
 
 	function exportSVG() {
 		var svg_xml = XMLSerialize(_svg);
@@ -156,7 +156,7 @@ SVGElement.prototype.toDataURL = function(type, options) {
 		if (keepBB) var bb = _svg.getBBox();
 
 		// NOTE: this canvg call is synchronous and blocks
-		canvg(canvas, svg_xml, { 
+		myCanvg(canvas, svg_xml, { 
 			ignoreMouse: true, ignoreAnimation: true,
 			offsetX: keepBB ? -bb.x : undefined, 
 			offsetY: keepBB ? -bb.y : undefined,
