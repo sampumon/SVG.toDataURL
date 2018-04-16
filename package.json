@@ -2,7 +2,6 @@
   "name": "svg.todataurl",
   "version": "0.0.0",
   "description": "Gives your SVG elements the missing toDataURL function (same as Canvas has)",
-  "main": "svg_todataurl.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
