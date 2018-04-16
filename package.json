@@ -1,5 +1,5 @@
 {
-  "name": "svg.todataurl",
+  "name": "svgtodatauri",
   "version": "0.0.0",
   "description": "Gives your SVG elements the missing toDataURL function (same as Canvas has)",
   "scripts": {
